@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>System Infos with Electron</title>
+    <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
+  </head>
+  <body>
+<div class="container">
+  <h1>System Info App</h1>
+</div>
+
+<div class="container">
+  <div id="infoOutput">
+
+  </div>
+</div>
+
+<script>
+  console.log(process);
+
+let output = `
+  <h2>Application Data</h2>
+  <ul class="list-group">
+    <li class="list-group-item">Node: ${process.versions.node}</li>
+    <li class="list-group-item">Chrome: ${process.versions.chrome}</li>
+    <li class="list-group-item">Electron: ${process.versions.electron}</li>
+  </ul>
+
+  <h2>System Specs</h2>
+  <ul class="list-group">
+    <li class="list-group-item">System Architecture: ${process.arch}</li>
+    <li class="list-group-item">Processor Identifier: ${process.env.HOME}</li>
+    <li class="list-group-item">Login NameS: ${process.env.LOGNAME}</li>
+  </ul>
+
+  <h2>System Memory</h2>
+  <ul class="list-group">
+    <li class="list-group-item">Total: ${process.getSystemMemoryInfo().total}</li>
+    <li class="list-group-item">Free:  ${process.getSystemMemoryInfo().free}</li>
+  </ul>
+
+
+`
+
+document.getElementById('infoOutput').innerHTML = output;
+</script>
+<script>
+  require('./renderer.js');
+</script>
+  </body>
+</html>
